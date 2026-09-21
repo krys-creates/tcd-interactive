@@ -12,8 +12,10 @@ The text, images, table entries, and external link inside the template are now p
 - Subpage-specific styling.
 - Controls the intro section, content cards, gallery, table layout, accessibility button position, and the footer layout used by the template page.
 
-`js/artsbuilding-accessibility.js`
-- Handles the accessibility modal interactions.
-- Opens the modal when the accessibility button is clicked and closes it when the user clicks the close button or outside the modal.
+`css/accessibility.css` and `js/accessibility.js`
+- Shared accessibility settings (text size in 5 steps up to 200%, high contrast, text spacing, underlined links, reduced motion), used by every page including `index.html`, `map.html` and `catalogue.html`.
+- The script builds the settings dialog itself, so a page only needs the header button (`id="accessibilityBtn"`), the stylesheet link in `<head>`, and the script tag at the end of `<body>`. If a page has no button, one is added automatically.
+- All text sizes in the CSS must be in `rem` (not `px`) so the text-size setting can scale them.
+- Settings are saved in `localStorage`, so they carry over to every page.
 
 If another building page uses the same structure, it can keep these files and only replace the page content, images, and text.

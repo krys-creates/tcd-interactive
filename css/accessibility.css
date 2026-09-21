@@ -1,0 +1,648 @@
+/*
+  Accessibility settings - shared by EVERY page.
+  Loaded together with js/accessibility.js, which builds the dialog and sets these classes on <html>:
+    a11y-contrast-high    high contrast colour scheme
+    a11y-spacing          WCAG 1.4.12 text spacing
+    a11y-links            underline every link
+    a11y-reduce-motion    no animations / transitions
+  Text size is set by the script as an inline font-size on <html> (all page text is in rem).
+  This file is self-contained on purpose, so it works on pages that do not use base.css variables.
+*/
+
+/* ---------- Button (used when a page has no #accessibilityBtn of its own) ---------- */
+.a11y-floating-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1500;
+  width: 48px;
+  height: 48px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.a11y-floating-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- Dialog ---------- */
+.a11y-modal {
+  --a11y-blue: #042851;
+  --a11y-blue-mid: #0a3d70;
+  --a11y-gold: #e9d8a6;
+  --a11y-parchment: #f5f0e8;
+  --a11y-border: #d8d2c8;
+  --a11y-focus: #1a6bb5;
+
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(2, 29, 59, 0.6);
+  backdrop-filter: blur(3px);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  animation: a11yFade 0.2s ease;
+}
+
+.a11y-modal[hidden] {
+  display: none;
+}
+
+.a11y-modal *,
+.a11y-modal *::before,
+.a11y-modal *::after {
+  box-sizing: border-box;
+}
+
+html.a11y-modal-open {
+  overflow: hidden;
+}
+
+.a11y-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(480px, 100%);
+  max-height: 100%;
+  overflow: hidden;
+  color: #1a1a1a;
+  background: var(--a11y-parchment);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(2, 29, 59, 0.45);
+  animation: a11yRise 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes a11yFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes a11yRise {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Header band */
+.a11y-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px 18px 22px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--a11y-blue) 0%, var(--a11y-blue-mid) 100%);
+  border-bottom: 3px solid var(--a11y-gold);
+}
+
+.a11y-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.a11y-heading-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.a11y-title {
+  margin: 0;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.a11y-subtitle {
+  margin: 3px 0 0;
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.a11y-close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.a11y-close:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #fff;
+}
+
+/* Body */
+.a11y-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 20px;
+  overflow-y: auto;
+}
+
+.a11y-card {
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid var(--a11y-border);
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(4, 40, 81, 0.08);
+}
+
+.a11y-card-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0 0 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--a11y-blue-mid);
+}
+
+.a11y-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--a11y-blue);
+}
+
+/* Text size stepper */
+.a11y-stepper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.a11y-step-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--a11y-blue);
+  background: #fff;
+  border: 2px solid var(--a11y-blue);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.a11y-step-btn-large {
+  font-size: 1.6rem;
+}
+
+.a11y-step-btn small {
+  margin-left: 1px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.6em;
+  font-weight: 700;
+  vertical-align: 0.35em;
+}
+
+.a11y-step-btn:hover:not(:disabled) {
+  color: #fff;
+  background: var(--a11y-blue);
+}
+
+.a11y-step-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.a11y-step-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.a11y-steps {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.a11y-step {
+  flex: 1;
+  height: 8px;
+  background: #e3ddd0;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.a11y-step.is-on {
+  background: var(--a11y-blue);
+}
+
+/* Contrast choice */
+.a11y-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.a11y-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px 12px;
+  font: inherit;
+  color: var(--a11y-blue);
+  background: #fff;
+  border: 2px solid var(--a11y-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.a11y-choice:hover {
+  border-color: var(--a11y-blue-mid);
+}
+
+.a11y-choice.is-active {
+  background: #eef3fa;
+  border-color: var(--a11y-blue);
+  box-shadow: inset 0 0 0 1px var(--a11y-blue);
+}
+
+.a11y-choice-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.a11y-preview-normal {
+  color: var(--a11y-blue);
+  background: var(--a11y-parchment);
+  border: 1px solid var(--a11y-border);
+}
+
+.a11y-preview-high {
+  color: #ffea00;
+  background: #000;
+}
+
+.a11y-choice-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Switch rows */
+.a11y-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid #ece7dc;
+}
+
+.a11y-row:first-of-type {
+  padding-top: 0;
+  border-top: none;
+}
+
+.a11y-row:last-child {
+  padding-bottom: 0;
+}
+
+.a11y-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.a11y-row-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.a11y-row-desc {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #5a5a5a;
+}
+
+.a11y-switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 52px;
+  height: 30px;
+  padding: 0;
+  background: #b9b3a6;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.a11y-switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.a11y-switch[aria-checked="true"] {
+  background: var(--a11y-blue);
+}
+
+.a11y-switch[aria-checked="true"]::before {
+  transform: translateX(22px);
+}
+
+/* Footer */
+.a11y-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--a11y-border);
+}
+
+.a11y-note {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #5a5a5a;
+}
+
+.a11y-reset {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 10px 22px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--a11y-blue);
+  border: 2px solid var(--a11y-blue);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.a11y-reset:hover {
+  background: var(--a11y-blue-mid);
+}
+
+.a11y-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.a11y-modal :focus-visible,
+.a11y-floating-btn:focus-visible {
+  outline: 3px solid var(--a11y-focus);
+  outline-offset: 2px;
+}
+
+.a11y-header :focus-visible {
+  outline-color: var(--a11y-gold);
+}
+
+@media (max-width: 480px) {
+  .a11y-modal {
+    padding: 8px;
+  }
+
+  .a11y-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
+/* ---------- Text spacing (WCAG 1.4.12) ---------- */
+html.a11y-spacing :is(p, li, td, th, dd, dt, label, address, blockquote, h1, h2, h3, h4, h5, h6, a, span, strong, em, small, input, button, select, textarea):not(.a11y-modal *) {
+  line-height: 1.6 !important;
+  letter-spacing: 0.08em !important;
+  word-spacing: 0.16em !important;
+}
+
+html.a11y-spacing :is(p, li, dd, blockquote):not(.a11y-modal *) {
+  margin-bottom: 1em;
+}
+
+/* ---------- Underline links ---------- */
+html.a11y-links a:not(.a11y-modal *, .header-brand, .footer-social-link, .leaflet-control-zoom a) {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 3px !important;
+}
+
+/* ---------- Reduce motion (also the default when the OS asks for it) ---------- */
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- High contrast: black background, white text, yellow links/controls ----------
+   Map pins keep their category colours so they stay recognisable. */
+html.a11y-contrast-high body {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+html.a11y-contrast-high body :is(
+  header, footer, main, section, aside, nav, article, div, ul, ol, li, table, thead, tbody, tr, td, th,
+  p, span, small, strong, em, address, label, h1, h2, h3, h4, h5, h6, input, select, textarea, button
+):not(.custom-marker, .custom-marker *, .leaflet-tile-pane *, .leaflet-marker-icon) {
+  background-color: #000 !important;
+  background-image: none !important;
+  color: #fff !important;
+  border-color: #fff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+html.a11y-contrast-high body a,
+html.a11y-contrast-high body a * {
+  color: #ffea00 !important;
+  text-decoration: underline;
+}
+
+html.a11y-contrast-high body button,
+html.a11y-contrast-high body input,
+html.a11y-contrast-high body select,
+html.a11y-contrast-high body textarea {
+  border: 2px solid #fff !important;
+}
+
+html.a11y-contrast-high body .category-item.active,
+html.a11y-contrast-high body .category-checkbox.checked {
+  background-color: #ffea00 !important;
+  color: #000 !important;
+  border-color: #ffea00 !important;
+}
+
+html.a11y-contrast-high body :focus-visible {
+  outline: 3px solid #ffea00 !important;
+  outline-offset: 2px;
+}
+
+html.a11y-contrast-high body img,
+html.a11y-contrast-high body svg {
+  filter: contrast(1.1);
+}
+
+/* Keep the accessibility icon visible on the black/blue backgrounds */
+html.a11y-contrast-high body #accessibilityBtn,
+html.a11y-contrast-high body .accessibility-btn,
+html.a11y-contrast-high body .a11y-floating-btn {
+  background-color: #fff !important;
+  border-radius: 50% !important;
+}
+
+html.a11y-contrast-high body .a11y-floating-btn img,
+html.a11y-contrast-high body #accessibilityBtn img,
+html.a11y-contrast-high body .accessibility-btn img {
+  filter: none;
+}
+
+/* The dialog itself in high contrast */
+html.a11y-contrast-high .a11y-modal {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: none;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-dialog {
+  border: 2px solid #fff;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-header {
+  border-bottom: 3px solid #ffea00;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-card {
+  border-width: 2px;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-card-title,
+html.a11y-contrast-high .a11y-modal .a11y-value {
+  color: #ffea00 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-step {
+  background-color: #555 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-step.is-on {
+  background-color: #ffea00 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-choice.is-active,
+html.a11y-contrast-high .a11y-modal .a11y-step-btn:hover:not(:disabled),
+html.a11y-contrast-high .a11y-modal .a11y-reset {
+  background-color: #ffea00 !important;
+  color: #000 !important;
+  border-color: #ffea00 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-choice.is-active .a11y-choice-label {
+  background-color: transparent !important;
+  color: #000 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-preview-normal {
+  background-color: #f5f0e8 !important;
+  color: #042851 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-preview-high {
+  background-color: #000 !important;
+  color: #ffea00 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-switch {
+  background-color: #000 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-switch::before {
+  background: #fff;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-switch[aria-checked="true"] {
+  background-color: #ffea00 !important;
+  border-color: #ffea00 !important;
+}
+
+html.a11y-contrast-high .a11y-modal .a11y-switch[aria-checked="true"]::before {
+  background: #000;
+}
+
+html.a11y-contrast-high body a.header-brand,
+html.a11y-contrast-high body a.footer-social-link {
+  text-decoration: none;
+}

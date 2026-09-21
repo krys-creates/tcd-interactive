@@ -214,7 +214,7 @@ Leaflet map fills entire area*/
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .category-label {
@@ -409,7 +409,7 @@ Leaflet map fills entire area*/
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 .saved-list-name {
@@ -503,7 +503,7 @@ Leaflet map fills entire area*/
 
 .marker-pin-inner {
   transform: rotate(45deg);
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
 }
 
@@ -526,7 +526,7 @@ Leaflet map fills entire area*/
 
 .leaflet-popup-close-button {
   color: white !important;
-  font-size: 18px !important;
+  font-size: 1.125rem !important;
   width: 24px !important;
   height: 24px !important;
   display: flex !important;
@@ -659,7 +659,7 @@ Leaflet map fills entire area*/
   align-items: center;
   justify-content: center;
   color: var(--oxford-blue);
-  font-size: 22px;
+  font-size: 1.375rem;
   box-shadow: 2px 0 8px rgba(0,0,0,0.08);
   transition: left var(--transition-slow), background-color var(--transition-fast);
 }

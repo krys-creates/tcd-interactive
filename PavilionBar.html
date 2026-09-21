@@ -7,6 +7,7 @@
     <link rel="icon" href="images/favicon.png" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/styleSub.css" />
+    <link rel="stylesheet" href="css/accessibility.css">
   </head>
   <body>
     <!-- HEADER from landing page with accessibility button -->
@@ -264,35 +265,6 @@
         </div>
       </footer>
     </div>
-    <div id="accessibilityModal" class="modal">
-      <div class="modal-content">
-        <div class="lines">
-          <button
-            id="closeModal"
-            type="button"
-            aria-label="Close accessibility modal"
-          >
-            &times;
-          </button>
-          <h2>Accessibility Adjustments</h2>
-        </div>
-
-        <div class="lines">
-          <p>Brightness :</p>
-          <input type="range" min="0" max="100" />
-        </div>
-        <div class="lines">
-          <p>Contrast Adjustment:</p>
-          <button class="ac-buttons">Light Contrast</button>
-          <button class="ac-buttons">High Contrast</button>
-        </div>
-
-        <div class="lines">
-          <p>Font Size Adjustment:</p>
-          <button class="ac-buttons">24</button>
-        </div>
-      </div>
-    </div>
-    <script src="js/artsbuilding-accessibility.js"></script>
-  </body>
+      <script src="js/accessibility.js"></script>
+    </body>
 </html>

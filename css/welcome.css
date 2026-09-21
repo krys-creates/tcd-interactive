@@ -7,13 +7,13 @@
 
 html, body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;   /* page may grow and scroll vertically, e.g. with larger text */
 }
 
 .welcome-page {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   background-color: #042851;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ html, body {
   justify-content: center;
   position: relative;
   font-family: 'DM Sans', system-ui, sans-serif;
-  padding-bottom: 120px; /*distance between grapics and text to logo*/
+  padding-bottom: 8.5rem; /*distance between grapics and text to logo; rem so it grows with text size*/
 }
 
 /* graphics*/
@@ -59,6 +59,8 @@ html, body {
 
 /* Text */
 .welcome-text {
+  max-width: 100%;
+  padding: 0 16px;
   text-align: center;
 }
 
@@ -132,7 +134,7 @@ html, body {
   border-radius: 0;
 }
 
-.accessibility-btn:hover,.accessibility-btn:focus,.accessibility-btn:active,.accessibility-btn:focus-visible {
+.accessibility-btn:hover,.accessibility-btn:active {
   background: none;
   outline: none;
   box-shadow: none;
@@ -140,18 +142,24 @@ html, body {
   transform: scale(1.1);
 }
 
+.accessibility-btn:focus-visible {
+  outline: 3px solid #e9d8a6;
+  outline-offset: 4px;
+  transform: scale(1.1);
+}
+
 /* Footer pinned bottom centre*/
 .welcome-footer {
   position: absolute;
-  bottom: 28px;
+  bottom: 1.75rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  white-space: nowrap;
   width: max-content;
+  max-width: calc(100% - 32px);
 }
 
 .welcome-footer-logo {

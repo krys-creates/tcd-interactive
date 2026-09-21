@@ -252,7 +252,7 @@ body {
   border: 1.5px solid rgba(255, 255, 255, 0.35);
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 0.9375rem;
   transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
