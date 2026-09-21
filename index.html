@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trinity College Dublin - Campus Building Finder</title>
+  <meta name="description" content="Find buildings on the Trinity College Dublin campus. Use the interactive map or browse the A-Z catalogue.">
+
+  <link rel="preload" href="images/building-wings.png" as="image"> <!-- preload: fetches graphics before anything else render- no loading issues-->
+  <link rel="preload" href="images/building-tower.png" as="image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/welcome.css">
+  <link rel="icon" href="images/favicon.png">
+</head>
+<body class="welcome-page">
+
+  <!-- graphics-->
+  <div class="illustration-wrap">
+    <img src="images/building-wings.png" alt="builidng-graphics" class="illustration-wings" draggable="false">
+    <img src="images/building-tower.png" alt="builidng-graphics" class="illustration-tower" draggable="false">
+  </div>
+
+  <!--Welcome text + CTA-->
+  <div class="welcome-text">
+    <h1 class="welcome-heading">Welcome to Trinity College Dublin building finder!</h1>
+
+    <a href="map.html" class="welcome-subtitle" aria-label="Enter the building finder- go to interactive map">
+      Use interactive map or go to A&#8211;Z catalogue <span class="welcome-subtitle-arrow" aria-hidden="true">&#8250;</span>
+    </a>
+  </div>
+
+  <!--Footer -->
+  <div class="welcome-footer">
+    <img src="images/TCDLOGO.png" alt="logo" class="welcome-footer-logo" onerror="this.style.display='none'">
+
+    <div class="welcome-footer-text">
+      <strong>Trinity College Dublin</strong>
+      <span>Coláiste na Tríonóide, Baile Átha Cliath</span>
+      <span>The University of Dublin</span>
+    </div>
+  </div>
+
+   <!--accesibility button-->
+<div class="accessibility-btn-wrap">
+    <button class="accessibility-btn" aria-label="Accessibility options">
+    <img src="images/accessibility.png" alt="accessibility logo" draggable="false">
+    </button>
+  </div>
+  
+</body>
+</html>

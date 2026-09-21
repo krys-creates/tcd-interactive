@@ -1,0 +1,339 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Match catalogue typography for subpage content. */
+.intro,
+.intro *,
+.container,
+.container *,
+.modal-content,
+.modal-content * {
+  font-family: var(--font-body);
+}
+
+.title-section h1,
+.card h2,
+.gallery h2,
+.modal h2 {
+  font-family: var(--font-display);
+}
+
+/* Larger accessibility button in header (artsbuilding only). */
+.site-header-with-accessibility {
+  gap: 16px;
+}
+
+.header-left-with-accessibility {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-left-with-accessibility #accessibilityBtn {
+  width: 44px;
+  height: 44px;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.header-left-with-accessibility #accessibilityBtn img {
+  width: 34px;
+  height: 34px;
+}
+
+body {
+  background-color: #f5f1e8;
+  color: #0c2c5c;
+  padding-top: 72px; /* for fixed header spacing */
+}
+
+/*------------------------------------------------------------------------------- HEADER */
+
+.top-bar {
+  height: 70px;
+  background-color: #0c2c5c;
+  color: white;
+  padding: 15px 30px 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.left img:last-child {
+  width: 70px;
+  margin-left: 30px;
+  padding: 0 10px;
+}
+
+.top-bar nav a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.top-bar nav a img {
+  margin-right: 12px;
+  width: 19px;
+}
+
+/* ----------------------------------------------------------------------INTRO */
+
+.intro {
+  max-width: 1300px;
+  margin: 30px auto;
+  padding: 30px 20px;
+  display: flex;
+}
+
+.image-section {
+  display: flex;
+  margin-right: 30px;
+}
+
+.image-section img {
+  width: 350px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 25px;
+}
+
+.title-section h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.info-card {
+  background: #f0e9e1;
+  padding: 40px 22px;
+  border-radius: 10px;
+  width: 481px;
+  line-height: 1.6;
+  border: 0.1px solid #e0dad3;
+  box-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* ----------------------------------------------------------------------------CONTENT */
+
+.container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: #f0e9e1;
+  border-radius: 10px;
+  border: 0.1px solid #e0dad3;
+  box-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.08);
+  padding: 22px;
+  margin-bottom: 40px;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+/* ------------------------------------------------------------------------TABLE */
+
+.table-wrapper {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  font-size: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* -----------------------------------------------------------------------------------GALLERY */
+
+.gallery {
+  margin-bottom: 100px;
+  margin-top: 80px;
+}
+
+.gallery h2 {
+  font-size: 25px;
+}
+
+.gallery-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Match catalogue footer layout exactly */
+.catalogue-footer {
+  margin-top: auto;
+}
+
+.catalogue-footer .site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 32px;
+}
+
+.catalogue-footer .site-footer address {
+  margin-bottom: 0;
+}
+
+.catalogue-footer .footer-links {
+  margin-bottom: 0;
+}
+
+.catalogue-footer .footer-social {
+  margin-top: 0;
+}
+
+
+/* Accessibility mode (toggled by artsbuilding-accessibility.js) */
+body.accessibility-mode {
+  background-color: #fbf7ee;
+  color: #0b2346;
+}
+
+body.accessibility-mode .info-card,
+body.accessibility-mode .card {
+  background: #fffaf2;
+  border-color: #9c8e78;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
+}
+
+body.accessibility-mode p,
+body.accessibility-mode li,
+body.accessibility-mode td,
+body.accessibility-mode th,
+body.accessibility-mode a,
+body.accessibility-mode span {
+  font-size: 22px;
+  line-height: 1.75;
+}
+
+body.accessibility-mode h1 {
+  font-size: 46px;
+}
+
+body.accessibility-mode h2 {
+  font-size: 30px;
+}
+
+.footer-accessibility-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.footer-accessibility-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #f5f1e8;
+  width: min(900px, 92vw);
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid #e0dad3;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  font-size: 30px;
+  color: #000;
+}
+
+.modal p {
+  font-size: 20px;
+  color: #000;
+  font-weight: 700;
+}
+
+#closeModal {
+  cursor: pointer;
+  margin-right: 12px;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+#closeModal img {
+  width: 34px;
+  border-radius: 50%;
+}
+
+.ac-buttons {
+  padding: 10px 16px;
+  background-color: #f4b400;
+  border: none;
+  border-radius: 10px;
+  margin: 12px;
+  cursor: pointer;
+}
+
+.lines {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.lines p,
+.lines input,
+.lines button {
+  padding: 12px;
+}
