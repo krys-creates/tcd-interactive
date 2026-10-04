@@ -646,3 +646,10 @@ html.a11y-contrast-high body a.header-brand,
 html.a11y-contrast-high body a.footer-social-link {
   text-decoration: none;
 }
+
+/* Subpage hero band: plain black in high contrast */
+html.a11y-contrast-high body .intro::before {
+  background: #000;
+  border-bottom-color: #fff;
+  box-shadow: none;
+}

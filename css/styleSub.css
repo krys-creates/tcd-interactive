@@ -5,7 +5,9 @@
   box-sizing: border-box;
 }
 
-/* Match catalogue typography for subpage content. */
+/* Building subpages: navy hero band, parchment cards, gold accents (same palette as the rest of the site).
+   All sizes are rem / fluid so the accessibility text-size setting reflows the layout instead of overflowing. */
+
 .intro,
 .intro *,
 .container,
@@ -19,7 +21,6 @@
   font-family: var(--font-display);
 }
 
-/* Larger accessibility button in header (artsbuilding only). */
 .site-header-with-accessibility {
   gap: 16px;
 }
@@ -43,111 +44,192 @@
 }
 
 body {
-  background-color: #f5f1e8;
-  color: #0c2c5c;
-  padding-top: 72px; /* for fixed header spacing */
+  background-color: var(--parchment-white);
+  color: var(--text-primary);
+  padding-top: var(--header-height); /* fixed header spacing */
 }
 
-/*------------------------------------------------------------------------------- HEADER */
-
-.top-bar {
-  height: 70px;
-  background-color: #0c2c5c;
-  color: white;
-  padding: 15px 30px 15px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.left {
-  display: flex;
-  align-items: center;
-}
-
-.left img:last-child {
-  width: 70px;
-  margin-left: 30px;
-  padding: 0 10px;
-}
-
-.top-bar nav a {
-  display: flex;
-  align-items: center;
-  color: white;
-  text-decoration: none;
-  font-size: 1.375rem;
-}
-
-.top-bar nav a img {
-  margin-right: 12px;
-  width: 19px;
-}
-
-/* ----------------------------------------------------------------------INTRO */
+/* ---------------------------------------------------------------- HERO / INTRO */
 
 .intro {
+  position: relative;
+  isolation: isolate;
   max-width: 1300px;
-  margin: 30px auto;
-  padding: 30px 20px;
-  display: flex;
+  margin: 0 auto 3rem;
+  padding: 2.5rem 1.25rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: 2rem 2.5rem;
+  align-items: center;
+  color: var(--oxford-blue);
+}
+
+/* One seamless full-width band behind the centred content (warm parchment, navy and gold accents) */
+.intro::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(60rem 22rem at 85% -20%, rgba(233, 216, 166, 0.55), transparent 70%),
+    linear-gradient(180deg, var(--parchment-light) 0%, var(--parchment-dark) 100%);
+  border-bottom: 4px solid var(--oxford-blue);
+  box-shadow: 0 6px 0 -2px #e9d8a6;
+}
+
+body {
+  overflow-x: clip; /* the 100vw band must never cause sideways scrolling */
 }
 
 .image-section {
-  display: flex;
-  margin-right: 30px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.image-section a {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 4px solid #fff;
+  box-shadow: var(--shadow-md);
+}
+
+/* a lone photo fills the whole column instead of leaving a gap */
+.image-section a:only-child {
+  grid-column: 1 / -1;
 }
 
 .image-section img {
-  width: 350px;
-  height: 250px;
+  display: block;
+  width: 100%;
+  height: 17rem;
   object-fit: cover;
-  border-radius: 12px;
-  margin-right: 25px;
+  transition: transform var(--transition-slow);
+}
+
+.image-section a:hover img {
+  transform: scale(1.04);
+}
+
+.title-section {
+  min-width: 0;
+}
+
+.title-section h1,
+.info-card,
+.card,
+.card h2 {
+  overflow-wrap: anywhere;
 }
 
 .title-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  margin-bottom: 1.25rem;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--oxford-blue);
+}
+
+.title-section h1::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 4px;
+  margin-top: 0.75rem;
+  background: #c9a24a;
+  border-radius: 2px;
 }
 
 .info-card {
-  background: #f0e9e1;
-  padding: 40px 22px;
-  border-radius: 10px;
-  width: 481px;
+  padding: 1.25rem 1.5rem;
   line-height: 1.6;
-  border: 0.1px solid #e0dad3;
-  box-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+  background: #fff;
+  border: 1px solid var(--border-colour);
+  border-left: 5px solid var(--oxford-blue);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-/* ----------------------------------------------------------------------------CONTENT */
+.info-card p + p {
+  margin-top: 0.6rem;
+}
+
+.info-card strong {
+  color: var(--oxford-blue);
+  font-weight: 700;
+}
+
+.info-card a {
+  color: var(--oxford-blue-mid);
+}
+
+/* ---------------------------------------------------------------- CONTENT */
 
 .container {
   max-width: 1300px;
-  margin: auto;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
 }
 
 .card {
-  background: #f0e9e1;
-  border-radius: 10px;
-  border: 0.1px solid #e0dad3;
-  box-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.08);
-  padding: 22px;
-  margin-bottom: 40px;
+  margin-bottom: 1.75rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--parchment-light);
+  border: 1px solid var(--border-colour);
+  border-left: 5px solid var(--oxford-blue);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .card h2 {
-  margin-bottom: 10px;
-  font-size: 1.5625rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--oxford-blue);
 }
 
-/* ------------------------------------------------------------------------TABLE */
+.card p,
+.card li {
+  font-size: 1.0625rem;
+  text-align: justify;      /* spread evenly across the full card width */
+  text-justify: inter-word;
+  hyphens: auto;            /* avoids big gaps between words (pages are lang="en") */
+  line-height: 1.75;
+  color: var(--text-primary);
+}
+
+.card p + p {
+  margin-top: 0.9rem;
+}
+
+.card a {
+  color: var(--oxford-blue-mid);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.card a:hover {
+  color: var(--cat-academic);
+}
+
+/* ---------------------------------------------------------------- TABLE */
 
 .table-wrapper {
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: 28rem;
+  overflow: auto;
+  border: 1px solid var(--border-colour);
+  border-radius: var(--radius-md);
+  background: #fff;
 }
 
 table {
@@ -157,39 +239,95 @@ table {
 
 th,
 td {
-  font-size: 1.25rem;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--parchment-dark);
+}
+
+th {
+  position: sticky;
+  top: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--oxford-blue);
+}
+
+tbody tr:nth-child(even) td,
+table tr:nth-child(even) td {
+  background: var(--parchment-light);
+}
+
+table tr:hover td {
+  background: var(--parchment-dark);
 }
 
 table tr:last-child td {
   border-bottom: none;
 }
 
-/* -----------------------------------------------------------------------------------GALLERY */
+/* ---------------------------------------------------------------- GALLERY */
 
 .gallery {
-  margin-bottom: 100px;
-  margin-top: 80px;
+  margin: 3rem 0 4rem;
 }
 
 .gallery h2 {
-  font-size: 1.5625rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--oxford-blue);
+}
+
+.gallery h2::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #e9d8a6, transparent);
 }
 
 .gallery-grid {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid a {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.gallery-grid a:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 
 .gallery-grid img {
+  display: block;
   width: 100%;
-  height: 200px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 10px;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-grid a:hover img {
+  transform: scale(1.05);
+}
+
+/* Keyboard focus on image links is drawn on the link, not clipped by its overflow */
+.image-section a:focus-visible,
+.gallery-grid a:focus-visible {
+  outline: 3px solid var(--cat-academic);
+  outline-offset: 3px;
 }
 
 /* Match catalogue footer layout exactly */
