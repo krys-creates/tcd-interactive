@@ -433,18 +433,37 @@ var sidebarToggle = document.getElementById("sidebar-toggle");
   var sidebar = document.getElementById("sidebar");
   var isMobile = function () { return window.innerWidth <= 768; };
 
+  /* arrow, aria-expanded and label always follow the real open/closed state */
+  function syncToggle() {
+    var open = isMobile() ? sidebar.classList.contains("mobile-open") : !sidebar.classList.contains("collapsed");
+    sidebarArrow.innerHTML = open ? "&#8249;" : "&#8250;";
+    sidebarToggle.setAttribute("aria-expanded", String(open));
+    sidebarToggle.setAttribute("aria-controls", "sidebar");
+    sidebarToggle.setAttribute("aria-label", open ? "Close sidebar" : "Open sidebar");
+  }
+
   sidebarToggle.addEventListener("click", function () {
     if (isMobile()) {
       var isOpen = sidebar.classList.toggle("mobile-open");
       sidebarToggle.classList.toggle("mobile-open", isOpen);
-      sidebarArrow.innerHTML = isOpen ? "&#8250;" : "&#8249;";
-    }else {
+    } else {
       var isCollapsed = sidebar.classList.toggle("collapsed");
       sidebarToggle.classList.toggle("collapsed", isCollapsed);
-      sidebarArrow.innerHTML = isCollapsed ? "&#8250;" : "&#8249;";
       setTimeout(function () { map.invalidateSize(); }, 420);    /*  map looks accurately after sidebar is collapsed */
     }
-    
+    syncToggle();
   });
+
+  /* rotating a tablet / resizing across the 768px breakpoint: drop the other layout's state */
+  var wasMobile = isMobile();
+  window.addEventListener("resize", function () {
+    if (isMobile() === wasMobile) return;
+    wasMobile = isMobile();
+    sidebar.classList.remove("mobile-open", "collapsed");
+    sidebarToggle.classList.remove("mobile-open", "collapsed");
+    syncToggle();
+    map.invalidateSize();
+  });
+  syncToggle();
 
 }); /* end DOMContentLoaded */

@@ -384,3 +384,46 @@ body {
     font-size: 1.1rem;
   }
 }
+
+
+/* Touch devices: controls at least 44x44px (WCAG 2.5.8 / platform guidelines) */
+@media (pointer: coarse) {
+  .icon-btn,
+  .toolbar-btn,
+  .bookmark-icon,
+  .side-panel-close,
+  .popup-save-btn,
+  .btn-delete,
+  .btn-back,
+  .sidebar-toggle-fixed {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .alpha-btn {
+    min-width: 40px;
+    min-height: 44px;
+  }
+
+  .leaflet-touch .leaflet-bar a {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+  }
+
+  .leaflet-popup-close-button {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* Very small phones: keep the header on one tidy row */
+@media (max-width: 380px) {
+  .header-brand-text span {
+    display: none;
+  }
+
+  .site-header {
+    padding: 0 8px;
+  }
+}

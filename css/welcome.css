@@ -215,3 +215,23 @@ html, body {
 .welcome-subtitle {
   animation: subtitlePulse 2.5s ease-in-out infinite;
 }
+
+/* Short screens (landscape phones): start from the top and let the page scroll,
+   instead of centring content that would end up above the top edge */
+@media (max-height: 560px) {
+  .welcome-page {
+    justify-content: flex-start;
+    padding: 4.5rem 0 1rem;
+  }
+
+  .illustration-wrap {
+    width: min(160px, 40vw);
+    margin-top: 0.5rem;
+  }
+
+  .welcome-footer {
+    position: static;
+    transform: none;
+    margin: 1.5rem auto 0;
+  }
+}

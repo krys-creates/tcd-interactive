@@ -268,7 +268,7 @@
   top: var(--header-height);
   right: 0;
   bottom: 0;
-  width: 300px;
+  width: min(300px, 100vw);
   background: var(--white);
   z-index: 800;
   box-shadow: var(--shadow-lg);

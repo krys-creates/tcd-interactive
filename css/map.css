@@ -712,3 +712,11 @@ Leaflet map fills entire area*/
     border-color: var(--parchment-dark);
   }
 }
+
+
+/* Tablets: slimmer sidebar so the map keeps most of the screen */
+@media (min-width: 769px) and (max-width: 1100px) {
+  :root {
+    --sidebar-width: 340px;
+  }
+}
