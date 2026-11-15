@@ -427,3 +427,14 @@ body {
     padding: 0 8px;
   }
 }
+
+
+/* Category icons: centre the SVG in its circle. The wrapping span would otherwise sit on a text
+   baseline (inheriting the page line-height) and look pushed up. */
+:is(.category-icon, .saved-list-icon, .filter-item-icon, .saved-panel-icon, .panel-category-title-icon) > span,
+:is(.category-icon, .saved-list-icon, .filter-item-icon, .saved-panel-icon, .panel-category-title-icon) svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
